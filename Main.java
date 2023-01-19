@@ -1,26 +1,41 @@
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
 
 public class Main {
 
-    public static void main(String[] args) {
-        // Вариант 1
-        Integer[] input = {1, 2, 5, 16, -1, -2, 0, 32, 3, 5, 8, 23, 4};
-        List<Integer> intList = new ArrayList<>();
-        for (int i : input) {
-            if (i > 0 && i % 2 == 0) {
-                intList.add(i);
+    static List<Integer> onlyPositive(List<Integer> intList) {
+        List<Integer> positiveList = new ArrayList<>();
+        for (Integer num : intList
+        ) {
+            if (num > 0) {
+                positiveList.add(num);
             }
         }
-        Collections.sort(intList);
-        System.out.println("Результат первого варианта: " + intList);
+        return positiveList;
+    }
 
-        //Вариант 2
-        System.out.println("Результат второго варианта: ");
-        StreamMain obj = new StreamMain();
-        obj.intList2.stream()
-                .filter(x-> x >0)
-                .filter(x-> x % 2 ==0)
-                .sorted(Comparator.naturalOrder())
-                .forEach(System.out::println);
+    static List<Integer> divisibleBy2(List<Integer> intList) {
+        List<Integer> positiveList = new ArrayList<>();
+        for (Integer num : intList
+        ) {
+            if (num % 2 == 0) {
+                positiveList.add(num);
+            }
+        }
+        return positiveList;
+    }
+
+    public static void main(String[] args) {
+
+        List<Integer> intList = Arrays.asList(1, 2, 5, 16, -1, -2, 0, 32, 3, 5, 8, 23, 4);
+
+        intList = onlyPositive(intList);
+        intList = divisibleBy2(intList);
+        Collections.sort(intList);
+
+        intList.forEach(System.out::println);
     }
 }
